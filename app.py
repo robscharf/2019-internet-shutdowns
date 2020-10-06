@@ -3,7 +3,6 @@ import dash_core_components as dcc
 import dash_html_components as html
 import pandas as pd
 import plotly.express as px
-import numpy as np
 
 ## Graph 1
 # Fetch Dataset into DataFrame
@@ -114,13 +113,4 @@ app.layout = html.Div([
 ], className="row")    
 
 ])
-
-@app.server.route('/static/<path:path>')
-def static_file(path):
-    static_folder = os.path.join(os.getcwd(), 'static')
-    return send_from_directory(static_folder, path)
-
-
-
-
    
