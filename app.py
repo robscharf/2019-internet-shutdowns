@@ -1,8 +1,10 @@
 import dash 
 import dash_core_components as dcc
 import dash_html_components as html
+import dash_bootstrap_components as dbc
 import pandas as pd
 import plotly.express as px
+
 
 ## Graph 1
 # Fetch Dataset into DataFrame
@@ -70,8 +72,10 @@ soc_shutdown = px.bar(
     labels={'service': 'Platform', 'outages': 'Number of Outages'}
 )
 
-app = dash.Dash(__name__)
+app = dash.Dash(__name__, external_stylesheets=[dbc.themes.CERULEAN])
+
 server = app.server
+
 app.layout = html.Div([
 
     html.Div([
@@ -83,27 +87,28 @@ app.layout = html.Div([
     ]),
 
     html.Div([
-    dcc.Graph(
-        id='graph',
-        figure=annual_shutdowns
-    ),
-
-    html.Hr([]),
+        dcc.Graph(
+            id='graph',
+            figure=annual_shutdowns
+        ),
+    ]),
 
     html.Div([
-        dcc.Graph(
-            id="pie",
-            figure=downtime_country
-        )
-    ], className="five columns"),
-    
-    html.Div([
-        dcc.Graph(
-            id="pie-2",
-            figure=soc_shutdown         
-        )
-    ], className="five columns"),                   
-], className="row")    
-
+        html.Div([
+            dcc.Graph(
+                id="pie",
+                figure=downtime_country
+            )
+        ], className="five columns"),
+        
+        html.Div([
+            dcc.Graph(
+                id="pie-2",
+                figure=soc_shutdown         
+            )
+        ], className="five columns")                       
+    ], className="row")    
 ])
-   
+
+if __name__ == '__main__':
+    app.run_server(debug=True)   
