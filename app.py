@@ -75,13 +75,6 @@ server = app.server
 app.layout = html.Div([
 
     html.Div([
-        html.Link(
-            rel='stylesheet',
-            href='/static/stylesheet.css'
-        )
-    ]),
-
-    html.Div([
         html.H2('Global Internet Shutdowns in 2019'),
 
         html.P("Based on: Access Now's Shutdown Tracker Optimization Project (STOP)"),
